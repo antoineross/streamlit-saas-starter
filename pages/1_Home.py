@@ -99,7 +99,8 @@ repo = "streamlit-saas-starter"
 stars = get_github_repo_stars(owner, repo)
 
 if stars is not None:
-    st.markdown('<div style="text-align: center;">Join 10,000 others. Open source on GitHub.</div>', unsafe_allow_html=True)
+    st.markdown(f'<div style="text-align: center;">Join 10,000 others.</div>', unsafe_allow_html=True)
+    st.markdown(f'<div style="text-align: center;">Open source with {stars} ⭐ on GitHub!</div>', unsafe_allow_html=True)
 
     st.markdown(f"""
         <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
@@ -113,11 +114,42 @@ if stars is not None:
     """, unsafe_allow_html=True)
 
 
-st.header("A completely open-source Streamlit SaaS Template with a landing page, pricing, multiple-pages and authentication")
+st.header("An example app built using Streamlit, Stripe and Supabase")
+
+# --- Cloud Logo ---
+
+# SVG URLs for GitHub, Streamlit, Stripe, and Supabase
+github_svg = "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+streamlit_svg = "https://streamlit.io/images/brand/streamlit-mark-color.svg"
+stripe_svg = "https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg"
+supabase_svg = "https://www.vectorlogo.zone/logos/supabase/supabase-icon.svg"
+
+# HTML template for the cloud logo
+cloud_logo_html = f"""
+<div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px;">
+    <div style="flex-basis: 10%; text-align: center;">
+        <img src="{github_svg}" alt="GitHub Logo" style="width: 50px; height: auto;">
+    </div>
+    <div style="flex-basis: 10%; text-align: center;">
+        <img src="{streamlit_svg}" alt="Streamlit Logo" style="width: 50px; height: auto;">
+    </div>
+    <div style="flex-basis: 10%; text-align: center;">
+        <img src="{stripe_svg}" alt="Stripe Logo" style="width: 50px; height: auto;">
+    </div>
+    <div style="flex-basis: 10%; text-align: center;">
+        <img src="{supabase_svg}" alt="Supabase Logo" style="width: 50px; height: auto;">
+    </div>
+</div>
+"""
+
+# Display the cloud logo using st.markdown
+st.markdown(f'<div style="text-align: center;">Built with the following brands: </div>', unsafe_allow_html=True)
+st.markdown(cloud_logo_html, unsafe_allow_html=True)
+
 
 
 markdown = """
-Streamlit SaaS Template is your all-in-one solution for creating, deploying, and managing SaaS applications with Streamlit. This completely open-source template simplifies the process of building scalable web applications with built-in authentication, API integration, and responsive design.
+A completely open-source Streamlit SaaS Template with a custom Pricing Section with Landing Page, OAuth/Authentication and Database using Supabase Postgres.
 
 ---
 
@@ -134,13 +166,11 @@ st.markdown(markdown)
 
 ui.link_button("Get Started Now 🚀", key="get_started", variant="default", url="https://github.com/antoineross/streamlit-saas-starter")
 
-
+# --- Features ---
 st.write("")
 st.write("---")
 st.subheader("Features")
 
-# --- Features ---
-st.write("")
 cols1 = st.columns(2)
 with cols1[0]:
     st.markdown("#### A Good Looking Login Page")
