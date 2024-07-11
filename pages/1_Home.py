@@ -4,10 +4,7 @@ import streamlit.components.v1 as components
 import streamlit_shadcn_ui as ui
 from streamlit_extras.switch_page_button import switch_page 
 from menu import menu_home
-import os
-from dotenv import load_dotenv, find_dotenv
-
-load_dotenv(find_dotenv())
+import requests
 
 st.set_page_config(layout="wide",
                     page_title="Home",
@@ -23,7 +20,7 @@ CSS_FILE = STYLES_DIR / "main.css"
 
 # Global Variables:
 CONTACT_EMAIL = "developer.antoine@gmail.com"
-APP_URL = "http://localhost:8501/"
+APP_URL = "https://saas-starter.streamlit.app"
 # Check if a user is logged in
 if 'user' in st.session_state and st.session_state['user']:
     st.sidebar.markdown(f"*Welcome **{st.session_state['user']['email']}***")
@@ -39,19 +36,82 @@ def load_css_file(css_file_path):
 load_css_file(CSS_FILE)
 
 # Customize the sidebar
-markdown = """
-GitHub Repository: <https://github.com/KawniX/KawniX>
+github_link = """
+GitHub Repository: <https://github.com/antoineross/streamlit-saas-starter>
 """
 
-# st.sidebar.title("About")
-# st.sidebar.info(markdown)
+# Centering image and title using markdown
 logo = "public/streamlit-logo.svg"
 
-left_co, cent_co,last_co = st.columns(3)
+import base64
+from pathlib import Path
 
-st.title("Streamlit SaaS Template")
-with cent_co:
-    st.image(logo)
+def img_to_bytes(img_path):
+    img_bytes = Path(img_path).read_bytes()
+    encoded = base64.b64encode(img_bytes).decode()
+    return encoded
+def img_to_html(img_path):
+    img_html = "<img src='data:image/png;base64,{}' class='img-fluid'>".format(
+      img_to_bytes(img_path)
+    )
+    return img_html
+
+with st.columns(3)[1]:
+     st.image(logo)
+
+st.markdown(
+    f"""
+    <div style="text-align: center;">
+        <h1 style="margin-top: 10px;">SaaS Template</h1>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# GitHub icon SVG
+github_svg = """
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+</svg>
+"""
+
+# X (Twitter) icon SVG
+twitter_svg = """
+<svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 509.64" width="16" height="16">
+    <rect width="512" height="509.64" rx="115.61" ry="115.61"/>
+    <path fill="#fff" fill-rule="nonzero" d="M323.74 148.35h36.12l-78.91 90.2 92.83 122.73h-72.69l-56.93-74.43-65.15 74.43h-36.14l84.4-96.47-89.05-116.46h74.53l51.46 68.04 59.53-68.04zm-12.68 191.31h20.02l-129.2-170.82H180.4l130.66 170.82z"/>
+</svg>
+"""
+
+def get_github_repo_stars(owner, repo):
+    url = f"https://api.github.com/repos/{owner}/{repo}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return data['stargazers_count']
+    else:
+        st.error("Failed to fetch data from GitHub API")
+        return None
+
+owner = "antoineross"
+repo = "streamlit-saas-starter"
+
+stars = get_github_repo_stars(owner, repo)
+
+if stars is not None:
+    st.markdown('<div style="text-align: center;">Join 10,000 others. Open source on GitHub.</div>', unsafe_allow_html=True)
+
+    st.markdown(f"""
+        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+            <a href="https://github.com/{owner}/{repo}" target="_blank" class="btn btn-default" style="display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; background-color: #24292e; color: white; text-decoration: none; border-radius: 5px;">
+                {github_svg} Visit GitHub Repository
+            </a>
+            <a href="https://twitter.com/antoineross__" target="_blank" class="btn btn-default" style="display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; background-color: black; color: white; text-decoration: none; border-radius: 5px;">
+                {twitter_svg} Follow @antoineross__ on X
+            </a>
+        </div>
+    """, unsafe_allow_html=True)
+
 
 st.header("A completely open-source Streamlit SaaS Template with a landing page, pricing, multiple-pages and authentication")
 
@@ -72,7 +132,8 @@ Join us and take the first step towards revolutionizing your SaaS projects.
 
 st.markdown(markdown)
 
-ui.link_button("Get Started Now 🚀", key="get_started", variant="default", url=f"{APP_URL}/Data_Catalog")
+ui.link_button("Get Started Now 🚀", key="get_started", variant="default", url="https://github.com/antoineross/streamlit-saas-starter")
+
 
 st.write("")
 st.write("---")
@@ -118,7 +179,7 @@ Get involved:
     
 with cols1[1]:
     st.image("public/demo-1.png", use_column_width=True)
-    ui.link_button("Start building your app today!", key="Feature3_button", variant="default",  url=f"{APP_URL}/Chatbot")
+    ui.link_button("Start building your app today!", key="Feature3_button", variant="default",  url=f"https://github.com/antoineross/streamlit-saas-starter")
 
 # --- DEMO ---
 st.write("")
