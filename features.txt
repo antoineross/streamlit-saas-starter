@@ -1,0 +1,66 @@
+# cols = st.columns(3)
+# with cols[0]:
+#     with ui.card(key="Feature1"):
+
+#         ui.element("h1", children=["KawniXData: Accessible Earth Observation Data"], className="text-2xl font-bold m-2", key="Feature1_title")
+#         ui.element("p", children=["Explore, Search, and Download from Over 10 Providers"], className="text-sm font-medium m-2", key="Feature1_subtitle")
+
+        
+ 
+#         # ui.element("p", children=["""KawniXData gives you an easy way to access products from more than 10 providers, with more than 50 different product types (Sentinel 1, Sentinel 2, Sentinel 3, Landsat, etc.) that can be searched and downloaded."""], 
+#         #             className="text-sm font-medium m-2 mt-2 mb-2", key="Feature1_description1")
+        
+#         # ui.element("p", children=["""We have fonctionality for searching, aggregating results and downloading remote sensed images while offering data access regardless of the data provider. KawniXData is structured around three functions"""], 
+#         #             className="text-sm font-medium m-2 mt-2 mb-2", key="Feature1_description2")
+        
+#         # ui.element("p", children=["This includes: "], 
+#         #             className="text-muted-foreground text-xs font-medium m-2", key="Feature1_description3")
+#         # ui.element("p", children=["- List product types: list of supported products and their description"], 
+#         #             className="text-muted-foreground text-xs font-medium m-1", key="Feature1_description4")
+#         # ui.element("p", children=["- Search products (by product type) : searches products according to the search criteria provided"], 
+#         #             className="text-muted-foreground text-xs font-medium m-1", key="Feature1_description5")
+#         # ui.element("p", children=["- Download products : download product “as is”"], 
+#         #             className="text-muted-foreground text-xs font-medium m-1", key="Feature1_description6")       
+        
+#         ui.element("link_button", key="Feature1_button", text="Sign up, and try it out for free !", variant="default", className="h-10 w-full rounded-md m-2 text-xs", 
+#                    url="http://localhost:8501/Data_Catalog_NoAuth")
+        
+# with cols[1]:
+#     with ui.card(key="Feature2"):
+
+#         ui.element("h1", children=["KawniXBot: AI-Powered Coding Assistant"], className="text-2xl font-bold m-2", key="Feature2_title")
+#         ui.element("p", children=["Your Autonomous Geospatial Engineer for Complex Coding Tasks"], className="text-sm font-medium m-2", key="Feature2_subtitle")
+ 
+#         # ui.element("p", children=["""KawniXBot is an AI coding assistant that can function as a fully autonomous geospatial engineer, able to plan and execute complex coding tasks requiring thousands of decisions. It offers impressive capabilities for reading all types of files and building full complex code from scratch, automatically finding and fixing bugs."""], 
+#         #             className="text-sm font-medium m-2 mt-2 mb-2", key="Feature2_description1")
+        
+#         # ui.element("p", children=["""KawniXBot capabilities are enabled by advancements in reasoning and long-term planning.offers solutions for geospatial experts, developers, and leading organizations looking to incorporate the power of Earth observation data into their business processes."""], 
+#         #             className="text-sm font-medium m-2 mt-2 mb-2", key="Feature2_description2")
+           
+        
+#         ui.element("link_button", key="Feature2_button", text="Join us, and sign up to have access to the tool !", variant="default", className="h-10 w-full rounded-md m-2 text-xs", 
+#                    url="http://localhost:8501/Data_Catalog_NoAuth")
+        
+        
+
+# with cols[2]:
+#     with ui.card(key="Feature3"):
+
+#         ui.element("h1", children=["KawniXCodeFlow: Transform Your Flow Diagrams into Executable Code"], className="text-2xl font-bold m-2", key="Feature3_title")
+#         ui.element("p", children=["Intuitive Code Flow for Seamless Workflow Automation"], className="text-sm font-medium m-2", key="Feature3_subtitle")
+#         # ui.element("p", children=["""KawniXCodeFlow is our innovative solution that turns flow diagrams into executable code, offering an intuitive and efficient way to plan and execute complex tasks."""], 
+#         #             className="text-sm font-medium m-2 mt-2 mb-2", key="Feature3_description1")
+        
+#         # ui.element("p", children=["""You can create a code flow, similar to a tree with interconnected blocks, where each block represents a task or function. Here's how KawniXCodeFlow can assist you:"""], 
+#         #             className="text-sm font-medium m-2 mt-2 mb-2", key="Feature3_description2")
+        
+#         # ui.element("p", children=["- Block Integration: Create code blocks and initiate a conversation with our chatbot to generate code, while also integrating data in various formats such as CSV, JSON, geojson, TIFF, Excel, and more."], 
+#         #             className="text-muted-foreground text-xs font-medium m-1", key="Feature3_description4")
+#         # ui.element("p", children=["- Linking Blocks: Connect the blocks together to create a logical flow of code, allowing for consistent task execution."], 
+#         #             className="text-muted-foreground text-xs font-medium m-1", key="Feature3_description5")
+#         # ui.element("p", children=["- Execution and Output: Run the code flow with inputs and outputs to achieve the desired results."], 
+#         #             className="text-muted-foreground text-xs font-medium m-1", key="Feature3_description6")       
+        
+#         ui.element("link_button", key="Feature3_button", text="Coming soon, sign up so you don't miss it !", variant="default", className="h-10 w-full rounded-md m-2 text-xs", 
+#                    url="http://localhost:8501/Data_Catalog_NoAuth")
+

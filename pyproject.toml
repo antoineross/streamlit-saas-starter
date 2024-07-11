@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "streamlit-app"
+version = "0.1.0"
+description = ""
+authors = ["Antoine Ross <developer.antoine@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+eodag = "2.11.0"
+folium = "0.15.1"
+streamlit = "1.33.0"
+streamlit-chat = "0.1.1"
+streamlit-folium = "0.18.0"
+st-paywall = "^0.1.6"
+geemap = "^0.32.0"
+geopandas = "^0.14.3"
+jupyter-server-proxy = "^4.1.2"
+leafmap = "^0.31.8"
+nbserverproxy = "^0.8.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

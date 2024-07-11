@@ -1,0 +1,7 @@
+.streamlit/secrets.toml
+.env
+prisma
+prisma/
+.env.local
+server/
+supabaseutils/
