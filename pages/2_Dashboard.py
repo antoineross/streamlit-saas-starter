@@ -2,21 +2,18 @@ import streamlit as st
 import streamlit_shadcn_ui as ui
 from datetime import datetime, timedelta
 from streamlit_supabase_auth import login_form, logout_button
-import os
-from dotenv import find_dotenv, load_dotenv
+
 import random
 import pandas as pd
 from streamlit_lightweight_charts import renderLightweightCharts
 import streamlit_lightweight_charts.dataSamples as data
 from menu import menu_with_redirect
 
-load_dotenv(find_dotenv())
-
 # Initialization with Supabase credentials
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+SUPABASE_URL = st.secrets["SUPABASE_URL"]
+SUPABASE_KEY = st.secrets["SUPABASE_KEY"]
 
-test_mode = os.getenv("testing_mode")
+test_mode = st.secrets["testing_mode"]
 
 if test_mode == "true":
     print("Testing mode.")

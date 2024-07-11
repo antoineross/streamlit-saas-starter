@@ -14,24 +14,6 @@ SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-# test_mode = os.getenv("testing_mode")
-# print("testing mode?", test_mode)
-# if test_mode == "true":
-#     stripe.api_key = os.getenv("stripe_api_key_test")
-
-#     stripe_product_id_starter = os.getenv("stripe_product_id_starter_test")
-#     stripe_product_id_teams = os.getenv("stripe_product_id_teams_test")
-#     stripe_product_id_enterprise = os.getenv("stripe_product_id_enterprise_test")
-#     print("Testing mode.")
-
-# elif test_mode == "false":
-#     stripe.api_key = os.getenv("stripe_api_key")
-
-#     stripe_product_id_starter = os.getenv("stripe_product_id_starter")
-#     stripe_product_id_teams = os.getenv("stripe_product_id_teams")
-#     stripe_product_id_enterprise = os.getenv("stripe_product_id_enterprise")
-#     print("Live mode.")
-
 stripe_product_id_starter = "prod_PvKiYmxG9ClAK9"
 stripe_product_id_teams = "prod_PvKiQbeE4tPVRV"
 stripe_product_id_enterprise = "prod_PvKhUNRY3qPRbr"
@@ -41,10 +23,6 @@ stripe_to_supabase_mapping = {
     stripe_product_id_teams: 2,
     stripe_product_id_enterprise: 3
 }
-
-# stripe_link_starter = os.getenv("stripe_link_starter")
-# stripe_link_teams = os.getenv("stripe_link_teams")
-# stripe_link_enterprise = os.getenv("stripe_link_enterprise")
 
 stripe_link_starter = "https://buy.stripe.com/cN2eYQ7dH04e2Fq4gi"
 stripe_link_teams = "https://buy.stripe.com/4gw2c4eG94ku2Fq145"
@@ -130,109 +108,6 @@ def fetch_user_subscription(email):
     else:
         print("User is not an active subscriber.")
     return None
-
-
-def display_subscription_info(email):
-    subscription_info = fetch_user_subscription(email)
-    if subscription_info:
-        # Fetch additional user details including the end date
-        user_details = get_user_details(email)
-        if user_details and 'subscriptionEndDate' in user_details:
-            end_date = user_details['subscriptionEndDate']
-            # Format the end date for display
-            end_date_formatted = datetime.strptime(end_date, "%Y-%m-%dT%H:%M:%S").strftime("%B %d, %Y")
-            subscription_summary = f"Your current subscription is: {subscription_info[0]['name']}."
-            description = f"Your current subscription ends on {end_date_formatted}."
-
-        else:
-            subscription_summary = f"Your current subscription is: {subscription_info[0]['name']}."
-            description = f"End date is currently not available. Please check back later or contact support."
-
-        cols = st.columns(3)
-        ui.metric_card(
-            title="Subscription Summary",
-            content=subscription_summary,
-            description=description,
-            key="SubscriptionSummary"
-        )
-    else:
-        st.markdown("You are not yet subscribed. Subscribe below: ")
-
-        st.write("")
-        st.write("---")
-        st.subheader("Pricing")
-        cols = st.columns(3)
-        with cols[0]:
-            with ui.card(key="pricing1"):
-                ui.element("span", children=["Starter"], className="text-sm font-medium m-2", key="pricing_starter_0")
-
-                ui.element("h1", children=["$0 per month"], className="text-2xl font-bold m-2", key="pricing_starter_1")
-
-                ui.element("link_button", key="nst2_btn", text="Subscribe", variant="default", className="h-10 w-full rounded-md m-2", url=stripe_link_starter)
-                
-                ui.element("p", children=["Ideal for individual users who want to get started with Kawnix."], 
-                            className="text-xs font-medium m-2 mt-2 mb-2", key="pricing_starter_2")
-
-                ui.element("p", children=["This includes: "], 
-                            className="text-muted-foreground text-xs font-medium m-2", key="pricing_enterprise_3") 
-                ui.element("p", children=["- 1GB Storage Access."], 
-                            className="text-muted-foreground text-xs font-medium m-1", key="pricing_starter_3")
-                ui.element("p", children=["- 62,500 tokens per month."], 
-                            className="text-muted-foreground text-xs font-medium m-1", key="pricing_starter_4")
-                ui.element("p", children=["- 1 active project."], 
-                            className="text-muted-foreground text-xs font-medium m-1", key="pricing_starter_5")
-                
-        with cols[1]:
-            with ui.card(key="pricing2"):
-                ui.element("span", children=["Teams"], className="text-sm font-medium m-2", key="pricing_pro_0")
-
-                ui.element("h1", children=["$100 per month"], className="text-2xl font-bold m-2", key="pricing_pro_1")
-
-                ui.element("link_button", key="nst2_btn", text="Subscribe", variant="default", className="h-10 w-full rounded-md m-2", url=stripe_link_teams)
-                
-        
-                ui.element("p", children=["Perfect for small businesses requiring advanced features."], 
-                            className="text-xs font-medium m-2 mt-2 mb-2", key="pricing_pro_2")
-                
-                ui.element("p", children=["This includes: "], 
-                            className="text-muted-foreground text-xs font-medium m-2", key="pricing_enterprise_3")
-                ui.element("p", children=["- 10GB Storage Access."], 
-                            className="text-muted-foreground text-xs font-medium m-1", key="pricing_pro_3")
-                ui.element("p", children=["- 625,000 tokens per month."], 
-                            className="text-muted-foreground text-xs font-medium m-1", key="pricing_pro_4")
-                ui.element("p", children=["- 10 active projects."], 
-                            className="text-muted-foreground text-xs font-medium m-1", key="pricing_pro_5")
-                
-
-        with cols[2]:
-            with ui.card(key="pricing3"):
-                ui.element("h1", children=["Enterprise"], className="text-sm font-medium m-20 m-2", key="pricing_enterprise_0")
-
-                ui.element("h1", children=["$500 per month"], className="text-2xl font-bold m-2", key="pricing_enterprise_1")
-                ui.element("link_button", key="nst2_btn", text="Subscribe", variant="default", className="h-10 w-full rounded-md m-2", url=stripe_link_enterprise)
-
-                ui.element("h2", children=["Designed for large companies and teams with specific needs."], 
-                            className="text-xs font-medium m-2", key="pricing_enterprise_2")
-                
-                ui.element("p", children=["This includes: "], 
-                            className="text-muted-foreground text-xs font-medium m-2", key="pricing_enterprise_3")        
-                ui.element("p", children=["- 50GB Storage Access."], 
-                            className="text-muted-foreground text-xs font-medium m-1", key="pricing_enterprise_3")
-                ui.element("p", children=["- Unlimited tokens per month."], 
-                            className="text-muted-foreground text-xs font-medium m-1", key="pricing_enterprise_4")
-                ui.element("p", children=["- Unlimited active projects."], 
-                            className="text-muted-foreground text-xs font-medium m-1", key="pricing_enterprise_5")
-
-
-
-@st.cache_data
-def fetch_user_projects(email):
-    user_data = supabase.table("User").select("id").eq("email", email).execute()
-    if user_data.data:
-        user_id = user_data.data[0]['id']
-        projects = supabase.table("Project").select("*").eq("ownerId", user_id).execute().data
-        return projects
-    return []
 
 def get_user_details(email):
     user_data = supabase.table("User").select("*").eq("email", email).execute().data

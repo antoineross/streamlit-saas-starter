@@ -45,7 +45,7 @@ GitHub Repository: <https://github.com/KawniX/KawniX>
 
 # st.sidebar.title("About")
 # st.sidebar.info(markdown)
-logo = "public/logo.png"
+logo = "public/streamlit-logo.svg"
 
 left_co, cent_co,last_co = st.columns(3)
 
@@ -96,7 +96,7 @@ Key Features:
     """)
     
 with cols1[1]:
-    st.image("public/Demo-Catalog.png", use_column_width=True)
+    st.image("public/demo-2.png", use_column_width=True)
     ui.link_button("Join our community on GitHub!", key="Feature2_button", variant="default", 
                     url="https://github.com/YourRepo/Streamlit-SaaS-Template")
 
@@ -117,14 +117,14 @@ Get involved:
     """)
     
 with cols1[1]:
-    st.image("public/Demo-Flow.png", use_column_width=True)
+    st.image("public/demo-1.png", use_column_width=True)
     ui.link_button("Start building your app today!", key="Feature3_button", variant="default",  url=f"{APP_URL}/Chatbot")
 
 # --- DEMO ---
 st.write("")
 st.write("---")
 st.subheader("Demo")
-DEMO_VIDEO="public/kawnix-demo.mp4"
+DEMO_VIDEO="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 
 st.video(DEMO_VIDEO, format="video/mp4", start_time=0)
 
@@ -132,25 +132,6 @@ st.video(DEMO_VIDEO, format="video/mp4", start_time=0)
 st.write("")
 st.write("---")
 st.subheader("Pricing")
-
-# test_mode = os.getenv("testing_mode")
-# print("Testing mode", test_mode)
-# if test_mode == "true":
-#     print("Testing mode.")
-#     stripe_link_starter = "https://buy.stripe.com/test_14k4jZdVF4RQ44E5kl"
-#     stripe_link_teams = "https://buy.stripe.com/test_14k4jZdVF4RQ44E5kl"
-#     stripe_link_enterprise = "https://buy.stripe.com/test_4gw4jZ5p96ZY1Ww4gi"
-#     print("Testing mode.")
-#     print("Stripe Link", stripe_link_enterprise)
-# elif test_mode == "false":
-#     stripe_link_starter = "https://buy.stripe.com/cN2eYQ7dH04e2Fq4gi"
-#     stripe_link_teams = "https://buy.stripe.com/4gw2c4eG94ku2Fq145"
-#     stripe_link_enterprise = "https://buy.stripe.com/28og2UbtX04e7ZK288"
-#     print("Live mode.")
-
-# stripe_link_starter_test = "https://buy.stripe.com/test_14k4jZdVF4RQ44E5kl"
-# stripe_link_teams_test = "https://buy.stripe.com/test_14k4jZdVF4RQ44E5kl"
-# stripe_link_enterprise_test = "https://buy.stripe.com/test_4gw4jZ5p96ZY1Ww4gi"
 
 stripe_link_starter = "https://buy.stripe.com/cN2eYQ7dH04e2Fq4gi"
 stripe_link_teams = "https://buy.stripe.com/4gw2c4eG94ku2Fq145"
