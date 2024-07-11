@@ -233,9 +233,9 @@ st.write("")
 st.write("---")
 st.subheader("Pricing")
 
-stripe_link_starter = "https://buy.stripe.com/cN2eYQ7dH04e2Fq4gi"
-stripe_link_teams = "https://buy.stripe.com/4gw2c4eG94ku2Fq145"
-stripe_link_enterprise = "https://buy.stripe.com/28og2UbtX04e7ZK288"
+stripe_link_starter = st.secrets["stripe_link_starter"]
+stripe_link_teams = st.secrets["stripe_link_teams"]
+stripe_link_enterprise = st.secrets["stripe_link_enterprise"]
 
 cols = st.columns(3)
 with cols[0]:

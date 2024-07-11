@@ -14,9 +14,9 @@ SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-stripe_product_id_starter = "prod_PvKiYmxG9ClAK9"
-stripe_product_id_teams = "prod_PvKiQbeE4tPVRV"
-stripe_product_id_enterprise = "prod_PvKhUNRY3qPRbr"
+stripe_product_id_starter = ""
+stripe_product_id_teams = ""
+stripe_product_id_enterprise = ""
 
 stripe_to_supabase_mapping = {
     stripe_product_id_starter: 1,
@@ -24,9 +24,9 @@ stripe_to_supabase_mapping = {
     stripe_product_id_enterprise: 3
 }
 
-stripe_link_starter = "https://buy.stripe.com/cN2eYQ7dH04e2Fq4gi"
-stripe_link_teams = "https://buy.stripe.com/4gw2c4eG94ku2Fq145"
-stripe_link_enterprise = "https://buy.stripe.com/28og2UbtX04e7ZK288"
+stripe_link_starter = "https://buy.stripe.com/"
+stripe_link_teams = "https://buy.stripe.com/"
+stripe_link_enterprise = "https://buy.stripe.com/"
 
 
 def ensure_user_in_database(user_id: str, email: str, name: str = None):
@@ -61,9 +61,6 @@ def update_user_subscription(email, subscription_id, subscription_tier_data):
         "subscriptionTierId": subscription_id,
         "subscriptionStartDate": current_date_str,
         "subscriptionEndDate": end_date_str,
-        "storageLimit": subscription_tier_data["storageLimit"],
-        "tokenLimit": subscription_tier_data["tokenLimit"],
-        "projectLimit": subscription_tier_data["projectLimit"]
     }).eq("email", email).execute()
 
     success = update_response.data is not None

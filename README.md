@@ -10,9 +10,9 @@ A completely open-source Streamlit SaaS Template with a custom Pricing Section w
 
 ### Authentication and User Experience
 ![Authentication and User Experience](public/demo-1.png)
-- **Secure OAuth Authentication**: Integrate effortlessly with Supabase for secure user authentication and session management.
-- **Modern UI with shadcn UI**: Utilize modern and attractive UI components for forms and other interactive elements.
+- **Secure OAuth Authentication**: Integrate effortlessly with Supabase for secure user authentication and session management. Supabase supports multiple providers like Google and GitHub for logging in.
 - **User-Friendly Login Page**: A fully-featured landing page that includes an FAQ section, pricing table, login options, contact form, feature highlights, and a hero section.
+- **Modern UI with shadcn UI**: Utilize modern and attractive UI components for forms and other interactive elements.
 - **Vertical Space Function**: Customizable vertical spacing to enhance layout and design.
 
 ### Open Source and Community-Driven
@@ -24,8 +24,17 @@ A completely open-source Streamlit SaaS Template with a custom Pricing Section w
 
 ### Comprehensive Dashboard and Hero Section
 ![Comprehensive Dashboard and Hero Section](public/demo-3.png)
-- **Dashboard with Subscription Check**: Monitor user subscriptions and provide access to premium features based on subscription status.
+- **Dashboard with Subscription Check**: Custom Stripe payment method that checks if the user is subscribed to a plan and updates their subscription status accordingly.
 - **Hero Section**: Engaging hero section with clear calls to action to captivate and convert visitors.
+
+### Dashboard/Server Features
+- **User Authentication**: Ensure users are authenticated securely using Supabase's OAuth integration.
+- **Subscription Management**: Check and manage user subscriptions using Stripe, with automatic synchronization between Stripe and Supabase.
+- **User Data Management**: Store and retrieve user data efficiently with Supabase.
+- **Subscription Status Check**: Verify if a user is an active subscriber and update their subscription details in Supabase.
+- **Custom Stripe Payment Integration**: Implement custom payment methods for different subscription tiers using Stripe.
+- **Note**: All features are dummy on the dashboard page, but the code implemented is from the `server.py` file.
+
 
 ## FAQ
 
@@ -43,33 +52,76 @@ If you have any questions, feel free to reach out at [developer.antoine@gmail.co
 
 ## Getting Started
 
-### Fork the Repository
-1. Fork the repository on GitHub.
+I apologize for the oversight. Here is the revised README section with the necessary details included:
 
-### Clone the Repository
-2. Clone your forked repository to your local machine:
+---
+
+### Instructions to Replicate the Repo
+
+1. **Fork the GitHub Repo**:
+    - Go to the [GitHub repository](https://github.com/antoineross/streamlit-saas-starter) and click "Fork".
+
+2. **Clone the Repo**:
     ```bash
-    git clone https://github.com/antoineross/streamlit-saas-starter.git
+    git clone https://github.com/YOUR_GITHUB_USERNAME/streamlit-saas-starter.git
     cd streamlit-saas-starter
     ```
 
-### Install Dependencies
-3. Install the required dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
+3. **Set Up Environment Variables**:
+    - Copy the environment variables from `.env.example` to `secrets.toml` in the `/.streamlit` folder.
 
-### Set Up Environment Variables
-4. Copy the environment variables from `.env.example` to `secrets.toml` in the `.streamlit` folder:
     ```bash
     cp .env.example .streamlit/secrets.toml
     ```
 
-### Run the Application
-5. Run the Streamlit application:
+    - Ensure to add your Supabase and Stripe keys, product IDs, and other necessary configuration values to the environment variables.
+
+### Creating Products and Prices
+
+To add products and prices in Stripe, follow these steps:
+
+1. **Log into your Stripe Dashboard** and navigate to the Products section.
+2. **Click on the + Add Product button**.
+3. **Add Product Details**:
+    - **Name**: e.g., "Gold Plan"
+    - **Description**: Optional
+    - **Image**: Optional
+4. **Add a Price**:
+    - **Standard Pricing**: e.g., $10/month or $100/year
+    - **Additional Options**: Customize billing periods, metered billing, etc.
+
+For more details, refer to [Stripe's Billing Documentation](https://stripe.com/docs/billing/subscriptions/examples).
+
+**Important**: Once the product is created, note down the Product ID and the link to buy the product. These will be needed for your environment variables.
+
+### Supabase Setup
+
+1. **Create an Account**: Sign up at [Supabase](https://supabase.com).
+2. **Create a Project**:
+    - Copy the database URL from the project settings.
+    - Copy the Supabase URL and the secret key.
+    - Paste these values into your `secrets.toml` in the `/.streamlit` folder.
+3. **Configure Authentication Providers**:
+    - Go to **Authentication** on the sidebar of the Supabase project.
+    - Go to **Providers**, and add Google/GitHub. Follow the instructions for each provider using [this guide](https://supabase.com/docs/guides/auth/social-login/auth-github).
+    - Go to **URL Configuration** in the sidebar of authentication. Add your site URLs.
+
+4. **Database Setup**: Configure your database schema and tables as needed for your project.
+5. **Use Server Functions**: Modify and use the functions from `server.py` for your subscription tiers and other backend logic.
+
+### Running the App
+
+1. **Install Dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2. **Run the App**:
     ```bash
     streamlit run app.py
     ```
+
+Follow these steps to set up your development environment and start using the Streamlit SaaS Starter template. If you have any questions or need further assistance, feel free to contact the support team or check the documentation.
 
 ## Contributing
 We welcome contributions from the community. Feel free to open issues or submit pull requests to help improve the project.
