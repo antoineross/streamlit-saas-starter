@@ -2,9 +2,10 @@
 
 # Streamlit SaaS Template
 
-A completely open-source Streamlit SaaS Template with a custom Pricing Section with Landing Page, OAuth/Authentication, and Database using Supabase Postgres.
+A completely open-source Streamlit SaaS Template with a custom Pricing Section with Landing Page, OAuth/Authentication, and Database using Supabase Postgres. See it on [Streamlit Cloud](https://saas-starter.streamlit.app/)!
 
 ![Streamlit SaaS Template](public/streamlit-logo.svg)
+
 
 ## Features
 
